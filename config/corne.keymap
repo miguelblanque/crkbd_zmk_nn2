@@ -5,66 +5,69 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/rgb.h>
-#include <dt-bindings/zmk/ext_power.h>
-#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>>
 
 
 / {
         keymap {
                 compatible = "zmk,keymap";
 
-                default_layer {
-// -------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |       |  Y  |  U   |  I  |  O  |  P  |   BKSP    |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |       |  H  |  J   |  K  |  L  |  ;  |    '      |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |       |  N  |  M   |  ,  |  .  |  -  | SHFT(RET) |
-//                    | WIN | LWR | SPA |       | RTN | RSE  | ALT |
-                        bindings = <
-   &kp TAB   &kp Q &kp W &kp E  &kp R &kp T      &kp Y   &kp U &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D  &kp F &kp G      &kp H   &kp J &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C  &kp V &kp B      &kp N   &kp M &kp COMMA &kp DOT &kp MINUS &kp RSHFT
+                Base {
+                // -------------------------------------------------------------------------------------
+                // |  TAB |  Q  |  W  |  E  |  R  |  T  |       |  Y  |  U   |  I  |  O  |  P  |   BKSP    |
+                // | CTRL |  A  |  S  |  D  |  F  |  G  |       |  H  |  J   |  K  |  L  |  ;  |    '      |
+                // | SHFT |  Z  |  X  |  C  |  V  |  B  |       |  N  |  M   |  ,  |  .  |  -  | SHFT(RET) |
+                //                    | WIN | LWR | SPA |       | RTN | RSE  | ALT |
+
+                label = "Base";
+                bindings = <
+&kp TAB   &kp Q &kp W &kp E  &kp R &kp T      &kp Y   &kp U &kp I     &kp O   &kp P    &kp BSPC
+&kp LCTRL &kp A &kp S &kp D  &kp F &kp G      &kp H   &kp J &kp K     &kp L   &kp SEMI &kp SQT
+&kp LSHFT &kp Z &kp X &kp C  &kp V &kp B      &kp N   &kp M &kp COMMA &kp DOT &kp MINUS &kp RSHFT
                     &kp LGUI &mo 1 &kp SPACE    &kp RET &mo 2 &kp RALT
-                        >;
-                };
+                >;
+        };
 
-                lower_layer {
-// ----------------------------------------------------------------------------------
-// |  ESC |  1   |  2  |  3   |  4     |  5  |          |  6  |  7  |  8  |  9  |  0   |    BKSP   |
-// |  CAPS|      |     |      |        |     |          | HOME| PGUP|  UP |PGDN |  ?   |     ^    |
-// | SHFT | UNDO | CUT | COPY | PASTE| |     |          | END | LFT | DWN | RGT | PRSC | SHFT(RET)|
-//                              |     |     |          | RET | ADJ |    |
-                        bindings = <
-  &kp ESC    &kp N1      &kp N2    &kp N3       &kp N4      &kp N5       &kp N6    &kp N7    &kp N8    &kp N9    &kp N0     &kp BSPC
-  &kp CLCK   &none       &none     &none        &none       &none        &kp HOME  &kp PG_UP &kp UP    &kp PG_DN &kp QMARK &kp CARET
-  &kp LSHFT  &kp UNDO    &kp CUT   &kp COPY     &kp PSTE    &kp DQT      &kp END   &kp LEFT  &kp DOWN  &kp RIGHT &kp PSCRN &mt RSHFT RET
+                Lower {
+                // ----------------------------------------------------------------------------------
+                // |  ESC |  1   |  2  |  3   |  4     |  5  |          |  6  |  7  |  8  |  9  |  0   |    BKSP   |
+                // |  CAPS|      |     |      |        |     |          | HOME| PGUP|  UP |PGDN |  ?   |     ^    |
+                // | SHFT | UNDO | CUT | COPY | PASTE| |     |          | END | LFT | DWN | RGT | PRSC | SHFT(RET)|
+                //                              |     |     |          | RET | ADJ |    |
+                label = "Lower";
+                bindings = <
+&kp ESC    &kp N1      &kp N2    &kp N3       &kp N4      &kp N5       &kp N6    &kp N7    &kp N8    &kp N9    &kp N0     &kp BSPC
+&kp CLCK   &none       &none     &none        &none       &none        &kp HOME  &kp PG_UP &kp UP    &kp PG_DN &kp QMARK &kp CARET
+&kp LSHFT  &kp UNDO    &kp CUT   &kp COPY     &kp PSTE    &kp DQT      &kp END   &kp LEFT  &kp DOWN  &kp RIGHT &kp PSCRN &mt RSHFT RET
                                       &trans      &trans     &trans      &kp RET   &mo 3    &trans
-                        >;
-                };
-
-               // -----------------------------------------------------------------------------------------
-      // |  ESC |  !  |  @  |  #  |  $  |  %  |   |  &  |  /  |  (  |  )  |  =  | DEL |
-      // | CTRL |   ? |     |     |     |     |   |  -  |  *  |  [  |  ]  |  \  |  `   |
-      // | <    |   > |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-      //                    | GUI | LWR | SPC |   | ENT | RSE | ALT |
-      raise_layer {
-         bindings = <
-            &kp ESC   &kp EXCL  &kp AT   &kp HASH  &kp DLLR   &kp PRCNT      &kp AMPS  &kp SLASH &kp LPAR  &kp RPAR  &kp EQUAL  &kp DEL
-            &kp LCTRL &kp QMARK &none    &none     &none      &none          &kp MINUS &kp ASTRK &kp LBKT  &kp RBKT   &kp BSLH &kp GRAVE
-            &kp LT    &kp GT    &none    &none     &none      &none          &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC   &kp PIPE &kp TILDE
+                >;
+        };        
+        
+                Raise {
+                // -----------------------------------------------------------------------------------------
+                // |  ESC |  !  |  @  |  #  |  $  |  %  |   |  &  |  /  |  (  |  )  |  =  | DEL |
+                // | CTRL |   ? |     |     |     |     |   |  -  |  *  |  [  |  ]  |  \  |  `   |
+                // | <    |   > |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+                //                    | GUI | LWR | SPC |   | ENT | RSE | ALT |
+                label = "Raise";
+                bindings = <
+&kp ESC   &kp EXCL  &kp AT   &kp HASH  &kp DLLR   &kp PRCNT      &kp AMPS  &kp SLASH &kp LPAR  &kp RPAR  &kp EQUAL  &kp DEL
+&kp LCTRL &kp QMARK &none    &none     &none      &none          &kp MINUS &kp ASTRK &kp LBKT  &kp RBKT   &kp BSLH &kp GRAVE
+&kp LT    &kp GT    &none    &none     &none      &none          &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC   &kp PIPE &kp TILDE
                                         &kp LGUI  &trans     &kp SPACE      &kp RET   &trans    &kp RALT
-         >;
-                };
+                 >;
+        };
 
-           adjust_layer {
-// -----------------------------------------------------------------------------------------
-// |  F1      |  F2      |  F3      | F4       | F5 |  F6     |   |    F7   |   F8  |    F9   |   F10 |   F11 | F12    |
-// | RGB BRI+ | RGB SAT+ | RGB HUE+ | RGB ANI+ |    | RGB TOG |   |    BT1  |   BT2 |   BT3   |   BT4 |   BT5 | BT CLR |
-// | RGB BRI- | RGB SAT- | RGB HUE- | RGB ANI- |    |         |   |    USB  |   BLE |K_SLEEP  |       |       |  RESET |
-//                                              |     |     |     |     |     |
-                        bindings = <
+                Adjust {
+                // -----------------------------------------------------------------------------------------
+                // |  F1      |  F2      |  F3      | F4       | F5 |  F6     |   |    F7   |   F8  |    F9   |   F10 |   F11 | F12    |
+                // | RGB BRI+ | RGB SAT+ | RGB HUE+ | RGB ANI+ |    | RGB TOG |   |    BT1  |   BT2 |   BT3   |   BT4 |   BT5 | BT CLR |
+                // | RGB BRI- | RGB SAT- | RGB HUE- | RGB ANI- |    |         |   |    USB  |   BLE |K_SLEEP  |       |       |  RESET |
+                //                                              |     |     |     |     |     |
+                label = "Adjust";
+                bindings = <
    &kp F1   &kp F2 &kp F3 &kp F4 &kp F5 &kp F6                                                              &kp F7       &kp F8      &kp F9      &kp F10      &kp F11      &kp F12         
    &rgb_ug RGB_BRI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_EFF &none        &rgb_ug RGB_TOG           &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR
    &rgb_ug RGB_BRD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_EFR &none        &none                     &out OUT_USB &out OUT_BLE &kp K_SLEEP        &none        &none        &none

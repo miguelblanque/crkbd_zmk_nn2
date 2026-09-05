@@ -1,19 +1,13 @@
-# This file generates the GitHub Actions matrix
-# For simple board + shield combinations, add them
-# to the top level board and shield arrays, for more
-# control, add individual board + shield combinations to
-# the `include` property, e.g:
-#
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#
+# Build both halves plus the settings reset image. Artifact names are explicit
+# so it is difficult to flash the wrong half by accident.
 ---
 include:
-  - board: nice_nano//zmk
-    shield: corne_left nice_view_adapter nice_view
-  - board: nice_nano//zmk
-    shield: corne_right nice_view_adapter nice_view
+  - board: nice_nano_v2
+    shield: corne_left
+    artifact-name: crkbd-corne-left-nice-nano-v2
+  - board: nice_nano_v2
+    shield: corne_right
+    artifact-name: crkbd-corne-right-nice-nano-v2
+  - board: nice_nano_v2
+    shield: settings_reset
+    artifact-name: crkbd-settings-reset-nice-nano-v2

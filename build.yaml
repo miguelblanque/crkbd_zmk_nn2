@@ -1,13 +1,13 @@
-# Build both halves plus the settings reset image. Artifact names are explicit
-# so it is difficult to flash the wrong half by accident.
 ---
 include:
   - board: nice_nano_v2
     shield: corne_left
-    artifact-name: crkbd-corne-left-nice-nano-v2
+    artifact-name: crkbd-rescue-left-nice-nano-v2
   - board: nice_nano_v2
-    shield: corne_right
-    artifact-name: crkbd-corne-right-nice-nano-v2
+    shield: corne_left
+    snippet: zmk-usb-logging
+    cmake-args: -DCONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=8000
+    artifact-name: crkbd-rescue-left-debug-nice-nano-v2
   - board: nice_nano_v2
     shield: settings_reset
     artifact-name: crkbd-settings-reset-nice-nano-v2
